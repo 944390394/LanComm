@@ -5,6 +5,15 @@
   "main": "./out/main/index.js",
   "license": "MIT",
   "private": false,
+  "author": "944390394 <944390394@users.noreply.github.com>",
+  "homepage": "https://github.com/944390394/LanComm#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/944390394/LanComm.git"
+  },
+  "bugs": {
+    "url": "https://github.com/944390394/LanComm/issues"
+  },
   "keywords": [
     "electron",
     "lan",
