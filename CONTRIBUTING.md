@@ -19,6 +19,22 @@ set ELECTRON_BUILDER_BINARIES_MIRROR=https://npmmirror.com/mirrors/electron-buil
 npm config set registry https://registry.npmmirror.com
 ```
 
+## 本地打包的一个前提
+
+`npm run dist` 需要 electron-builder 解压 winCodeSign 工具包，其中含有 macOS 的符号链接。Windows 上创建符号链接需要权限，否则解压会失败并中断打包。解决办法二选一：
+
+- 打开系统设置里的**开发者模式**（推荐，一次性设置）
+- 用管理员身份运行终端
+
+只想快速验证构建、不在意安装包图标的话，可以跳过这一步：
+
+```bash
+npm run build
+npx electron-builder --win --publish never -c.win.signAndEditExecutable=false
+```
+
+注意这样打出来的 exe 不会嵌入应用图标和版本信息，**不能用于发布**。正式产物由 GitHub Actions 在打 tag 时构建。
+
 ## 提交前自检
 
 ```bash
