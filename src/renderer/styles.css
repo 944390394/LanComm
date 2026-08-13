@@ -1,0 +1,170 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Colors are stored as raw RGB channels so Tailwind's alpha modifiers
+ * (bg-ink-900/70, border-ink-700/60, ...) can inject an alpha value.
+ * A plain `var(--ink-900)` holding a hex silently disables those modifiers.
+ */
+:root {
+  --ink-950: 7 16 20;
+  --ink-900: 13 23 28;
+  --ink-800: 20 34 41;
+  --ink-700: 29 50 59;
+  --ink-500: 111 139 150;
+  --ink-300: 183 201 209;
+  --ink-100: 232 241 244;
+  --mint-400: 93 222 192;
+  --mint-500: 47 196 163;
+  --mint-600: 31 155 127;
+  --sand-100: 243 239 230;
+  --sand-200: 228 220 203;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: rgb(var(--ink-100));
+  font-family: 'IBM Plex Sans', 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(1200px 600px at 12% -10%, rgb(var(--mint-500) / 0.18), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(120, 170, 190, 0.12), transparent 50%),
+    linear-gradient(160deg, #081115 0%, #0d171c 45%, #101c22 100%);
+  overflow: hidden;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.28;
+  background-image:
+    linear-gradient(rgb(var(--ink-300) / 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(var(--ink-300) / 0.05) 1px, transparent 1px);
+  background-size: 28px 28px;
+  mask-image: radial-gradient(ellipse at center, black 35%, transparent 80%);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--ink-500) / 0.45);
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.app-shell {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 280px minmax(0, 1fr) 300px;
+  gap: 0;
+  overflow: hidden;
+}
+
+.app-shell--compact {
+  grid-template-columns: 280px minmax(0, 1fr);
+}
+
+@media (max-width: 1100px) {
+  .app-shell {
+    grid-template-columns: 240px minmax(0, 1fr);
+  }
+
+  .app-shell > aside:last-child {
+    display: none;
+  }
+}
+
+.app-shell > * {
+  min-height: 0;
+  min-width: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.chat-panel {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.chat-scroll {
+  flex: 1 1 0;
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+}
+
+.chat-composer {
+  flex: 0 0 auto;
+}
+
+/* Keeps the three column headers, and their bottom dividers, on one line. */
+.panel-topbar {
+  box-sizing: border-box;
+  height: 72px;
+  min-height: 72px;
+  max-height: 72px;
+  padding: 0 1.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  border-bottom: 1px solid rgb(var(--ink-700) / 0.6);
+}
+
+.glass-panel {
+  background: rgb(var(--ink-900) / 0.72);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgb(var(--ink-300) / 0.08);
+}
+
+.brand-mark {
+  font-family: Sora, 'Segoe UI', sans-serif;
+  letter-spacing: 0.04em;
+  background: linear-gradient(120deg, #e8f1f4 10%, #5ddec0 55%, #2fc4a3 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.msg-in,
+.msg-out {
+  animation: rise 0.35s ease-out both;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.drop-active {
+  box-shadow: inset 0 0 0 2px rgb(var(--mint-500) / 0.55);
+}

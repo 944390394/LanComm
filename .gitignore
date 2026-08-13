@@ -1,0 +1,13 @@
+node_modules
+out
+dist
+release
+*.tsbuildinfo
+.DS_Store
+*.log
+.env
+.idea
+.vscode
+
+# Local registry / mirror settings should not be forced on contributors
+.npmrc

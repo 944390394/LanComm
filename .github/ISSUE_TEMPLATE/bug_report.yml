@@ -1,0 +1,58 @@
+name: 报告问题
+description: 程序行为不符合预期
+labels: [bug]
+
+body:
+  - type: textarea
+    id: what
+    attributes:
+      label: 问题描述
+      description: 发生了什么，你期望发生什么
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: 复现步骤
+      placeholder: |
+        1. 两台电脑都启动程序
+        2. 点击左侧设备
+        3. 拖入一个文件
+        4. 出现...
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: 程序版本
+      placeholder: 1.0.0
+    validations:
+      required: true
+
+  - type: input
+    id: os
+    attributes:
+      label: 系统版本
+      placeholder: Windows 11 23H2
+    validations:
+      required: true
+
+  - type: dropdown
+    id: scope
+    attributes:
+      label: 两台设备是否都是同一版本
+      options:
+        - 是
+        - 否
+        - 只用了一台
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: 日志
+      description: 用 `npm run dev` 启动后，把终端里 `[discovery]`、`[firewall]` 等输出贴上来
+      render: text
